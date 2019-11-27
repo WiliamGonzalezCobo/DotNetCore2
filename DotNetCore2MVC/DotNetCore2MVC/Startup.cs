@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetCore2MVC.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,8 +33,11 @@ namespace DotNetCore2MVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Agregamos extension de la configuracion del servicio de la cultura.
+            CultureConfig.ConfigureServices(services);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //AddViewLocalization nos permite poder usar las culturas en las vistas razor
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddDataAnnotationsLocalization().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +57,9 @@ namespace DotNetCore2MVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //Agregamos la configuracion Builder de la cultura
+            CultureConfig.Configure(app);
 
             app.UseMvc(routes =>
             {
