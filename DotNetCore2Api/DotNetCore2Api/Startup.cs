@@ -31,21 +31,31 @@ namespace DotNetCore2Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Configuracion del servicio de Swagger
-            services.AddSwaggerGen(config => config.SwaggerDoc("Documentacion", new Info()
+            services.AddSwaggerGen(config =>
             {
-                Title = "Configuracion Swagger",
-                Description = "Configuracion inicial del nuget de Suagger"
-            })
+                config.SwaggerDoc("Documentacion", new Info()
+                {
+                    Title = "Configuracion Swagger",
+                    Description = "Configuracion inicial del nuget de Suagger"
+                });
+
+                // La siguiente ruta se extrae de propiedades del proyecto, Compilacion y check en la opcion Archivo de documentacion XML
+                // ..\DotNetCore2\DotNetCore2Api\DotNetCore2Api\DotNetCore2Api.xml*/
+                string filePathXmlDocumentation = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "DotNetCore2Api.xml");
+                //Se incluye el xml de documentacion en la configuracion de Swagger
+                config.IncludeXmlComments(filePathXmlDocumentation);
+
+                config.AddSecurityDefinition("Bearer", new OAuth2Scheme()
+                {
+                    Description = "OAuthAutentication example",
+                    TokenUrl = "https://miServidorDeAutenticacion.net/oauth2/token",
+                    Flow = "myPassword",
+                    Type = "oauth2" // puede ser tambien jwt (json web Token)
+                });
+
+
+            }
             );
-
-
-            // La siguiente ruta se extrae de propiedades del proyecto, Compilacion y check en la opcion Archivo de documentacion XML
-            // ..\DotNetCore2\DotNetCore2Api\DotNetCore2Api\DotNetCore2Api.xml*/
-            string filePathXmlDocumentation = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "DotNetCore2Api.xml");
-            //Se incluye el xml de documentacion en la configuracion de Swagger
-            services.AddSwaggerGen(config => config.IncludeXmlComments(filePathXmlDocumentation));
-
-
 
 
 
