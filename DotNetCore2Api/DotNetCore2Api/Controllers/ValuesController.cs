@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetCore2Api.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore2Api.Controllers
@@ -10,7 +11,10 @@ namespace DotNetCore2Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
+        /// <summary>
+        /// obtiene por Get  un Array de Valores
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -26,7 +30,7 @@ namespace DotNetCore2Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ExampleModel prmExampleModel)
         {
         }
 
