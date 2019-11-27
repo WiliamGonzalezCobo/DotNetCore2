@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetCore2Api</name>
+    </assembly>
+    <members>
+        <member name="M:DotNetCore2Api.Controllers.ValuesController.Get">
+            <summary>
+            obtiene por Get  un Array de Valores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DotNetCore2Api.Model.ExampleModel.Id">
+            <summary>
+            Id del Ejemplo
+            </summary>
+        </member>
+    </members>
+</doc>
