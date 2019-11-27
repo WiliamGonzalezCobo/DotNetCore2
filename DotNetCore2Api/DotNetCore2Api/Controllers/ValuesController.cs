@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetCore2Api.Model;
+using DotNetCore2Api.Services.Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore2Api.Controllers
@@ -11,6 +12,12 @@ namespace DotNetCore2Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IPlayerService _playerService;
+
+        public ValuesController(IPlayerService playerService) {
+            _playerService = playerService;
+        }
+
         /// <summary>
         /// obtiene por Get  un Array de Valores
         /// </summary>
@@ -21,11 +28,15 @@ namespace DotNetCore2Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Optiene un string mediante el uso de inyeccion de dependencias.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return _playerService.GetName();
         }
 
         // POST api/values

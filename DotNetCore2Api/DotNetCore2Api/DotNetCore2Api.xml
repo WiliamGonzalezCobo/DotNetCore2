@@ -10,10 +10,38 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:DotNetCore2Api.Middleware.IoC">
+            <summary>
+            Clase extensiva de Inversion de Control para agregar los servicios en el StartUp
+            De esta forma podemos realizar la iyeccion de dependencias de todas nuestras clases en solo lugar
+            </summary>
+        </member>
         <member name="P:DotNetCore2Api.Model.ExampleModel.Id">
             <summary>
             Id del Ejemplo
             </summary>
+        </member>
+        <member name="T:DotNetCore2Api.Services.Contract.IPlayerService">
+            <summary>
+            Interface de PlayerService
+            </summary>
+        </member>
+        <member name="M:DotNetCore2Api.Services.Contract.IPlayerService.GetName">
+            <summary>
+            Obtiene el Nombre del jugador
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DotNetCore2Api.Services.PlayerService">
+            <summary>
+            Implementacion de la interface IPlayerService
+            </summary>
+        </member>
+        <member name="M:DotNetCore2Api.Services.PlayerService.GetName">
+            <summary>
+            Obtiene el nombre del jugador
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>
