@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCore2Api.Middleware
+namespace DotNetCore2Api.Extensions
 {
     /// <summary>
     /// Clase extensiva de Inversion de Control para agregar los servicios en el StartUp
