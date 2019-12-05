@@ -46,12 +46,26 @@ namespace DotNetCore2Api
                 //Se incluye el xml de documentacion en la configuracion de Swagger
                 config.IncludeXmlComments(filePathXmlDocumentation);
 
-                config.AddSecurityDefinition("Bearer", new OAuth2Scheme()
+                //Autenticacion de Swagger con OAuth
+                //config.AddSecurityDefinition("Bearer", new OAuth2Scheme()
+                //{
+                //    Description = "OAuthAutentication example",
+                //    TokenUrl = "https://miServidorDeAutenticacion.net/oauth2/token",
+                //    Flow = "myPassword",
+                //    Type = "oauth2" 
+                //});
+
+                //Autenticacion de Swagger usando JWT apiKey
+                config.AddSecurityDefinition("Bearer", new ApiKeyScheme(){
+                    Description = "JWT Token usar Bearer {token}",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey" //se permite un string
+                });
+
+                config.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
                 {
-                    Description = "OAuthAutentication example",
-                    TokenUrl = "https://miServidorDeAutenticacion.net/oauth2/token",
-                    Flow = "myPassword",
-                    Type = "oauth2" // puede ser tambien jwt (json web Token)
+                    { "Bearer", new string[] { } }
                 });
 
 
@@ -59,12 +73,14 @@ namespace DotNetCore2Api
             );
 
             IoC.AddService(services);
+            ConfigurationJWT.AddService(services,Configuration);
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

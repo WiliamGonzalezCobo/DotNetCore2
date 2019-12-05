@@ -17,6 +17,18 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:DotNetCore2Api.Extensions.ConfigurationJWT">
+            <summary>
+            Clase de configuracion de JWT
+            </summary>
+        </member>
+        <member name="M:DotNetCore2Api.Extensions.ConfigurationJWT.AddService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Agrega el servicio con la configuracion de JWT
+            </summary>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
         <member name="T:DotNetCore2Api.Extensions.IoC">
             <summary>
             Clase extensiva de Inversion de Control para agregar los servicios en el StartUp
@@ -27,6 +39,23 @@
             <summary>
             Id del Ejemplo
             </summary>
+        </member>
+        <member name="M:DotNetCore2Api.Services.AuthService.ValidateLogin(System.String,System.String)">
+            <summary>
+            validacion del login 
+            </summary>
+            <param name="user"></param>
+            <param name="pass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetCore2Api.Services.AuthService.GenerateToken(System.DateTime,System.String,System.TimeSpan)">
+            <summary>
+            Genera el token de autenticacion por JWT
+            </summary>
+            <param name="date"></param>
+            <param name="user"></param>
+            <param name="validDate"></param>
+            <returns></returns>
         </member>
         <member name="T:DotNetCore2Api.Services.Contract.IPlayerService">
             <summary>

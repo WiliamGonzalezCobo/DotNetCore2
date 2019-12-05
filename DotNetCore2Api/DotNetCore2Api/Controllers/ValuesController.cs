@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DotNetCore2Api.Model;
 using DotNetCore2Api.Services.Contract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore2Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase

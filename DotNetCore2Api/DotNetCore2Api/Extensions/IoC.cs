@@ -22,10 +22,13 @@ namespace DotNetCore2Api.Extensions
             // Otras formas de Inyeccion
 
             // Se crea una nueva instancia cada vez que ser realice una peticion al controlador
-            //services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<IPlayerService, PlayerService>();
 
             // se crea una nueva instacia por contexto
-            //services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+
+            // inyectamos el servicio de jwt
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }
