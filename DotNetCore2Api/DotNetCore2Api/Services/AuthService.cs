@@ -6,11 +6,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Utilities.Contract;
 
 namespace DotNetCore2Api.Services
 {
     public class AuthService:IAuthService
     {
+        private readonly IConfigurationSettings _configurationSettings;
+        public AuthService(IConfigurationSettings configurationSettings) {
+            _configurationSettings = configurationSettings;
+        }
+
         /// <summary>
         /// validacion del login 
         /// </summary>
@@ -44,12 +50,12 @@ namespace DotNetCore2Api.Services
             };
 
             SigningCredentials signingCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes("b87d3d19-9364-4b56-a8f0-7619ac5dcd65")),
+                new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(_configurationSettings.SigninKey())),
                 SecurityAlgorithms.HmacSha256Signature);
 
             JwtSecurityToken jwt = new JwtSecurityToken(
-                issuer: "Ejemplo",
-                audience: "Public",
+                issuer: _configurationSettings.Issuer(),
+                audience: _configurationSettings.Audience(),
                 claims: claims,
                 notBefore: date,
                 expires: expire,

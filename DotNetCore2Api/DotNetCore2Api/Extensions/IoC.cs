@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Utilities;
+using Utilities.Contract;
 
 namespace DotNetCore2Api.Extensions
 {
@@ -29,6 +31,9 @@ namespace DotNetCore2Api.Extensions
 
             // inyectamos el servicio de jwt
             services.AddScoped<IAuthService, AuthService>();
+
+            // inyeccion de Utilities
+            services.AddScoped<IConfigurationSettings, ConfigurationSettings>();
 
             return services;
         }
