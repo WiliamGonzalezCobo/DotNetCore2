@@ -29,3 +29,8 @@
 /DotNetCore2Coworking/Coworking.Api.DataAcces/obj
 /DotNetCore2Coworking/Coworking.Api.DataAcces.Contracts/bin/Debug/netcoreapp3.1
 /DotNetCore2Coworking/Coworking.Api.DataAcces.Contracts/obj
+/DotNetCore2Coworking/Coworking.Api/bin/Release/netcoreapp2.2
+/DotNetCore2Coworking/Coworking.Api/.config
+/DotNetCore2Coworking/Coworking.Api.DataAcces/bin/Debug/netcoreapp2.2
+/DotNetCore2Coworking/Coworking.Api.DataAcces.Contracts/bin/Debug/netcoreapp2.2
+/DotNetCore2Coworking/Coworking.Api/Properties/PublishProfiles
